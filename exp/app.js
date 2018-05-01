@@ -43,6 +43,9 @@ app.get("/home", function(req, res){
         res.send(text);
     })
 });
+app.get("/", function(req, res){
+  res.send("helloo herokuuuu!");
+});
  
 
  

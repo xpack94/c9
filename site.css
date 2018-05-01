@@ -1,0 +1,32 @@
+body{
+    background-color:#d3d3d3;
+    
+}
+.wrapper{
+    background-color:grey;
+    margin: 0 auto;
+    width: 80%;
+}
+
+
+nav.navbar.navbar-expand-lg.navbar-light{
+    
+    background-color: #191919 !important;
+    opacity: 0.8;
+}
+nav.navbar a,nav.navbar li, nav.navbar div{
+    color: white !important;
+}
+.dropdown div{
+    background-color: #191919;
+}
+.dropdown-item:hover{
+    background-color: blue;
+}
+
+.header{
+    height: 200px;
+    background-image: url(images/header.jpg);
+    background-size: cover;
+    background-position: center;
+}

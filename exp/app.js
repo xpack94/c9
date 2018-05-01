@@ -44,7 +44,7 @@ app.get("/home", function(req, res){
     })
 });
 app.get("/", function(req, res){
-  res.send("helloo herokuuuu!");
+  res.send("helloo herokuudduu!");
 });
  
 

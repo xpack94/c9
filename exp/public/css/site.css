@@ -1,0 +1,76 @@
+body{
+    background-color:white;
+    
+}
+.wrapper{
+    margin: 0 auto;
+    width: 80%;
+}
+
+
+nav.navbar.navbar-expand-lg.navbar-light{
+    
+    background-color: #191919 !important;
+    opacity: 0.8;
+    font-family:  sans-serif;
+}
+nav.navbar a,nav.navbar li, nav.navbar div{
+    color: white !important;
+}
+.dropdown div{
+    background-color: #191919;
+}
+.dropdown-item:hover{
+    background-color: blue;
+}
+
+.header{
+    height: 200px;
+    background-image: url("http://i.f1g.fr/media/eidos/orig/2015/03/26/PHOa21e53d0-d2f8-11e4-953e-0e4b97f95508-805x453.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.infos,.products_section{
+    padding: 0;
+}
+.products_section{
+    margin: 0 auto;
+}
+.products_section h1{
+    text-align: center;
+}
+div.row{
+    color: #555;
+    background-color: #f3f3f3;
+    width: 100%;
+    position: relative;
+    right: -15px;
+    font-family: 'Titillium Web', sans-serif;
+    
+}
+.products_list{
+    list-style: none;
+}
+
+.products_list li{
+    display :flex;
+    margin: 7px;
+     background-color: #E5E5E5;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.products_list li:hover{
+    transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+    background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%);
+}
+span.nom {
+    flex:2;
+}
+span.prix{
+    flex:1;
+}
+span.date_fin{
+    flex: 1;
+}

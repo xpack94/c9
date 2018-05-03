@@ -4,20 +4,12 @@ var http = require('http'),
     fs = require('fs');
 var mysql=require("mysql");
 var app = express();
-
-
 var conString = "postgres://postgres:hacker9494@localhost:5432/postgres";
 var client = new pg.Client(conString);
+var path = require('path');
 client.connect();
-//var pgp = require('pg-promise')
 
-// var connection = mysql.createConnection({
-//  host:'localhost',
-//  user:'xpack',
-//  database:'postgres',
-//  password:'azert'
-// });
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 // var x=1;
 
@@ -36,12 +28,32 @@ client.connect();
 //  app.set("view options", {layout: false});
 // app.use(express.static(__dirname + '/public'));
  
- 
+ content =client.query("select * from emp",function(err,results){
+   content=[];
+    for(var i=0;i<results["rows"].length;i++){
+            content.push(results["rows"][i]["ename"]);
+
+          }
+          return content;
+ });
 app.get("/home", function(req, res){
-  fs.readFile( '/home/ubuntu/workspace/home.html', 'utf8', function(err, text){
-        console.log("worked");
-        res.send(text);
-    })
+  res.render("/home/ubuntu/workspace/exp/views/home.ejs",{
+    content:content
+  });
+  
+  
+  // fs.readFile( '/home/ubuntu/workspace/exp/views/home.html', 'utf8', function(err, text){
+    
+    
+    
+  //       client.query("select * from emp",function(err,results){
+  //         for(var i=0;i<results["rows"].length;i++){
+  //           console.log(results["rows"][i]);
+  //         }
+  //       });
+  //       res.send(text);
+  //  });
+    
 });
 app.get("/", function(req, res){
   res.send("helloo herokuudduu!");

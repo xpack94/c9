@@ -1,0 +1,15 @@
+INSERT INTO objet (nom,prix,date_fin,id_annonceur,date_annonce,id_achteur,date_achat,id_categorie) values
+('audi',20000,NULL,3,'05/12/2018',NULL,NULL,3 ),
+('renault megane',7000,NULL,3,'12/02/2017',NULL,NULL,3),
+('chevrolet camaro',15000,NULL,7,'12/04/2017',NULL,NULL,3),
+('ford fiest',3500,NULL,12,'01/03/2018',4,'01/04/2018',3),
+('porche carrera',25000,NULL,3,'08/12/2017',NULL,NULL,3),
+('poisson',12,'06/15/2018',15,'06/01/2018',NULL,NULL,4),
+('sardines',7,'07/11/2018',13,'07/01/2018',NULL,NULL,4),
+('fromage chedar',25,'02/01/2018',20,'06/01/2018',NULL,NULL,4),
+('farine',12,NULL,19,'03/01/2018',NULL,NULL,4),
+('jean',250,NULL,7,'04/01/2018',NULL,NULL,1),
+('cahussure adidas',150,NULL,7,'02/21/2018',NULL,NULL,1),
+('basket nike',170,NULL,7,'11/01/2017',19,'12/02/2017',1),
+('timberland',220,NULL,6,'10/17/2017',15,'10/22/2017',1),
+('veste zara en coton',300,NULL,7,'11/01/2017',4,'11/08/2017',1);

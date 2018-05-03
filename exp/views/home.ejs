@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="css/site.css">
 
     <title>Hello, world!</title>
   </head>
@@ -46,13 +46,27 @@
     </form>
   </div>
 </nav>
-    <div class="header">
-       
-        
-    </div>
+    <div class="header"></div>
+        <div class="section">
+          <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>all the products</h1>
+              <ul class="products_list">
+                  
+                 <% for(var i=0; i < content.length; i++) { %>
+                     <li>
+                       <span class="nom"> <%= content[i] %></span>
+                       <span class="prix">25$</span>
+                       <span class="date_fin">27/05/2019</span>
+                     </li>
+                  <% } %>
+                     </ul>
+              </div>
+          </div>
+          
+      </div>
       
   </div>
-   
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

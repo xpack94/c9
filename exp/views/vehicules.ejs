@@ -49,7 +49,7 @@
     <div class="header"></div>
         <div class="section">
           <div class="row">
-              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>all the products</h1>
+              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>Véhicules</h1>
               <ul class="products_list">
                   
                  <% for(var i=0; i < content.length; i++) { %>
@@ -68,6 +68,12 @@
                        <% if(content[i]["telno"]) { %>
                        <p><span>telephone :<%=content[i]["telno"] %></span></p>
                        <% } %>
+                        <p><span>marque :<%=content[i]["marque"] %> </span></p>
+                       <p><span>année du véhicule :<%=content[i]["année"] %></span></p>
+                        <p><span>kilometrage :<%=content[i]["kilometrage"] %></span></p>
+                         <p><span>coumeur du véhicule :<%=content[i]["couleur"] %></span></p>
+                       
+                       
                       </div>
                   <% } %>
                      </ul>

@@ -49,7 +49,7 @@
     <div class="header"></div>
         <div class="section">
           <div class="row">
-              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>all the products</h1>
+              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>vétements</h1>
               <ul class="products_list">
                   
                  <% for(var i=0; i < content.length; i++) { %>
@@ -68,8 +68,27 @@
                        <% if(content[i]["telno"]) { %>
                        <p><span>telephone :<%=content[i]["telno"] %></span></p>
                        <% } %>
+
+                       <p><span>grandeur :<%=content[i]["grandeur"] %></span></p>
+                        <% if(content[i]["matériel"]) { %>
+   
+                      <p><span>matériel :<%=content[i]["matériel"] %></span></p>
+                      <%}%>
+                       <% if(content[i]["type"]) { %>
+                      <p><span>type :<%=content[i]["type"] %></span></p>
+                      <%}%>
+                      
+                       <% if(content[i]["style"]) { %>
+                      <p><span>style :<%=content[i]["style"] %></span></p>
+                      <%}%>
+                       <% if(content[i]["description_vetement"]) { %>
+                      <p><span>déscription :<%=content[i]["description_vetement"] %></span></p>
+                      <%}%>
                       </div>
                   <% } %>
+                  
+                      
+                  
                      </ul>
               </div>
           </div>

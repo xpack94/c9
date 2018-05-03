@@ -49,12 +49,12 @@
     <div class="header"></div>
         <div class="section">
           <div class="row">
-              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>all the products</h1>
+              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>Meubles</h1>
               <ul class="products_list">
                   
                  <% for(var i=0; i < content.length; i++) { %>
                      <li>
-                       <span class="nom"> <%= content[i]["nom_objet"] %></span>
+                       <span class="nom"> <%= content[i]["nom"] %></span>
                        <span class="prix"><%=content[i]["prix"]+"$"%></span>
                        <span class="date_fin"><a class="btn" data-toggle="collapse" data-target=<%="#viewdetail"+i %>>View details &raquo;</a></span>
                      </li>
@@ -62,7 +62,7 @@
                         <% if(content[i]["date_fin"]) { %>
                        <p><span>date fin de l'annonce :<%=content[i]["date_fin"] %></span></p>
                        <% }%>
-                       <p><span>annonceur :<%=content[i]["nom_membre"] %> <%= content[i]["prenom"]%></span></p>
+                       <p><span>annonceur :<%=content[i]["nom"] %> <%= content[i]["prenom"]%></span></p>
                        <p><span>email de l'annonceur :<a href=<%="mailto:"+content[i]["email"] %> ><%=content[i]["email"] %> </a> </span></p>
                        <p><span>cité de l'annonceur :<%=content[i]["cité"] %></span></p>
                        <% if(content[i]["telno"]) { %>

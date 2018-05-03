@@ -3,7 +3,7 @@
 --ajout des valeurs pour la table memebre
 
 
-INSERT INTO membre(nom,prenom,addr,cité,codePOstal,email,username,motDePass,telNo) values(
+INSERT INTO membre(nom_membre,prenom,addr,cité,codePOstal,email,username,motDePass,telNo) values(
 'Benedict' ,'Fletcher','P.O. Box 263, 8033 Ut St','Châlons-en-Champagne','27265','sapien.molestie@vestibulum.net','Dickerson','Kendall','1-454-842-9756'),
 ('Baker','Fleming','2760 Dolor Street','Uitbergen','91552','natoque@nibhQuisque.edu','Conner','Addison123','1-256-618-7615'),
 ('Shad','Mercado','9685 Feugiat. Avenue','Cambridge','86488','lacus@consequat.org','Gillespie','Cedric2020','1-131-204-0426'),

@@ -1,4 +1,4 @@
-INSERT INTO objet (nom,prix,date_fin,id_annonceur,date_annonce,id_achteur,date_achat,id_categorie) values
+INSERT INTO objet (nom_objet,prix,date_fin,id_annonceur,date_annonce,id_achteur,date_achat,id_categorie) values
 ('audi',20000,NULL,3,'05/12/2018',NULL,NULL,3 ),
 ('renault megane',7000,NULL,3,'12/02/2017',NULL,NULL,3),
 ('chevrolet camaro',15000,NULL,7,'12/04/2017',NULL,NULL,3),

@@ -11,59 +11,119 @@ client.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// var x=1;
+        //getting all the products from database
+        var content=client.query("select * from objet,membre where objet.id_annonceur=membre.id_membre  ",function(err,results){
+        content=[];
+        for(var i=0;i<results["rows"].length;i++){
+            content.push(results["rows"][i]);
+            
+          }
+         
+          return content;
+        });
+        
+        
+         //getting véhicules  products from database
+        var véhicules=client.query("select * from Véhicule,membre,objet where Véhicule.id_objet=objet.id_objet and objet.id_annonceur=membre.id_membre ",function(err,results){
+        véhicules=[];
+        for(var i=0;i<results["rows"].length;i++){
+            véhicules.push(results["rows"][i]);
+          }
+         
+          return véhicules;
+        });
+        
+        
+         //getting alimentations  products from database
+        var alimentations=client.query("select * from Alimentation,objet,membre where Alimentation.id_objet=objet.id_objet and objet.id_annonceur=membre.id_membre  ",function(err,results){
+        alimentations=[];
+        for(var i=0;i<results["rows"].length;i++){
+            alimentations.push(results["rows"][i]);
+           
+          }
+         
+          return alimentations;
+        });
 
-// while (x > 0) {
-//     client.query("INSERT INTO emp(empno, ename,job,mgr,hiredate,sal,comm,deptno) values(7999,'allen','CLERK',7839,'1980/12/25',1000,300,20)");
-//     x = x - 1;
-// }
- // var q="select count(*) from emp";
- // connection.query(q,function(err,results){
- //   if(err){
- //    console.log(err);
- //   }
- //   console.log(results);
- // });
- 
-//  app.set("view options", {layout: false});
-// app.use(express.static(__dirname + '/public'));
- 
- content =client.query("select * from emp",function(err,results){
-   content=[];
-    for(var i=0;i<results["rows"].length;i++){
-            content.push(results["rows"][i]["ename"]);
+     //getting meubles products from database
+        var meubles=client.query("select * from meuble,objet,membre where meuble.id_objet=objet.id_objet and objet.id_annonceur=membre.id_membre  ",function(err,results){
+        meubles=[];
+        for(var i=0;i<results["rows"].length;i++){
+            meubles.push(results["rows"][i]);
 
           }
-          return content;
- });
+         
+          return meubles;
+        });
+
+
+     //getting vétements  products from database
+        var vetements=client.query("select * from Vetement,objet,membre where Vetement.id_objet=objet.id_objet and objet.id_annonceur=membre.id_membre  ",function(err,results){
+        vetements=[];
+        for(var i=0;i<results["rows"].length;i++){
+            vetements.push(results["rows"][i]);
+          }
+         
+          return vetements;
+        });
+
+
+ //home route
 app.get("/home", function(req, res){
+   
+
   res.render("/home/ubuntu/workspace/exp/views/home.ejs",{
+    
     content:content
   });
   
-  
-  // fs.readFile( '/home/ubuntu/workspace/exp/views/home.html', 'utf8', function(err, text){
-    
-    
-    
-  //       client.query("select * from emp",function(err,results){
-  //         for(var i=0;i<results["rows"].length;i++){
-  //           console.log(results["rows"][i]);
-  //         }
-  //       });
-  //       res.send(text);
-  //  });
-    
 });
+//alimentations route
+app.get("/alimentations", function(req, res){
+   
+  res.render("/home/ubuntu/workspace/exp/views/alimentations.ejs",{
+    
+    content:alimentations
+  });
+ 
+});
+
+//meubles route
+app.get("/meubles", function(req, res){
+   
+
+  res.render("/home/ubuntu/workspace/exp/views/meubles.ejs",{
+    
+    content:meubles
+  });
+  
+});
+
+//véhicules route
+app.get("/vehicules", function(req, res){
+   
+  res.render("/home/ubuntu/workspace/exp/views/vehicules.ejs",{
+    
+    content:véhicules
+  });
+  
+});
+//vetements route
+app.get("/vetements", function(req, res){
+   
+
+  res.render("/home/ubuntu/workspace/exp/views/vetements.ejs",{
+    
+    content:vetements
+  });
+  
+});
+
 app.get("/", function(req, res){
   res.send("helloo herokuudduu!");
 });
  
 
- 
-// app.listen(5000, function () {
-//  console.log('App listening on port 8080!');
-// });
 
 app.listen((process.env.PORT || 5000), function(){
   console.log('listening on *:5000');

@@ -19,7 +19,7 @@ set DATESTYLE=dmy;
 
 CREATE TABLE membre 
 	(id_membre INT NOT NULL  ,
-	nom VARCHAR(55) NOT NULL ,
+	nom_membre VARCHAR(55) NOT NULL ,
 	prenom VARCHAR(55) NOT NULL,
 	addr VARCHAR(255) NOT NULL,
 	cité VARCHAR(30) NOT NULL ,
@@ -37,8 +37,8 @@ ALTER TABLE membre ALTER id_membre SET DEFAULT NEXTVAL('id_membre_seq');
 
 CREATE TABLE categories 
 		(id_catégorie INT NOT NULL,
-		 Nom VARCHAR(50) NOT NULL,
-		 description VARCHAR(255),
+		 Nom_cat VARCHAR(50) NOT NULL,
+		 description_cat VARCHAR(255),
 		 CONSTRAINT categoriePk PRIMARY KEY(id_catégorie)
 		);
 CREATE SEQUENCE id_categories_seq;
@@ -48,7 +48,7 @@ ALTER TABLE categories ALTER id_catégorie SET DEFAULT NEXTVAL('id_categories_se
 
 CREATE TABLE objet
 		(id_objet INT NOT NULL ,
-		nom VARCHAR(30) NOT NULL,
+		nom_objet VARCHAR(30) NOT NULL,
 		prix NUMERIC ,
 		date_fin DATE,
 		id_annonceur INT NOT NULL ,
@@ -73,7 +73,7 @@ CREATE TABLE Vetement
 		 matériel VARCHAR(50),
 		 type VARCHAR(50),
 		 style VARCHAR(50),
-		 description VARCHAR(50),
+		 description_vetement VARCHAR(50),
 		 CONSTRAINT vetementFk FOREIGN KEY(id_objet) REFERENCES objet(id_objet) on delete cascade on update cascade 
 		 );
 CREATE TABLE Alimentation 
@@ -91,7 +91,7 @@ CREATE TABLE meuble
 		 état VARCHAR(50),
 		 genre VARCHAR(50),
 		 matériel VARCHAR(50),
-		 description VARCHAR(255),
+		 description_meuble VARCHAR(255),
 		 CONSTRAINT meubleFk FOREIGN KEY(id_objet) REFERENCES objet(id_objet) on delete cascade on update cascade 
 		 );
 
@@ -101,7 +101,7 @@ CREATE TABLE Véhicule
 		 année DATE NOT NULL,
 		 kilometrage INT NOT NULL,
 		 couleur VARCHAR(30) NOT NULL,
-		 description VARCHAR(255),
+		 description_vehicule VARCHAR(255),
 		 CONSTRAINT VéhiculeFk FOREIGN KEY(id_objet) REFERENCES objet(id_objet) on delete cascade on update cascade 
 		 );
 

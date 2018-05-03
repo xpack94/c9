@@ -1,4 +1,4 @@
-INSERT INTO vetement (id_objet,grandeur,matériel,type,style,description) values 
+INSERT INTO vetement (id_objet,grandeur,matériel,type,style,description_vetement) values 
  (24,25,'coton','tout temps',NULL,'troué un peu'),
  (25,9,'coton','sport',NULL,'chaussure plate de couleur blanche'),
  (26,12,'coton','sport',NULL,'chaussure plate de couleur noire'),

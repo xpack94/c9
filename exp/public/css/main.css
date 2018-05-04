@@ -1,0 +1,43 @@
+body{
+    background-image: url("https://raw.githubusercontent.com/xpack94/imageC9/master/70H.jpg");
+    background-size: cover;
+}
+.wrapper{
+    color: #d3d3d3;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.cat{
+    width: 150px;
+    height: 150px;
+    position: relative;
+    background:#333;
+    margin: 2px;
+    opacity: 0.9;
+    cursor: pointer;
+}
+.cat a{
+    color: #d3d3d3;
+}
+.cat span{
+    position: absolute;
+    top:67px;
+    left: 38px;
+}
+.cat.layer{
+    width: 100%;
+    height: 100%;
+}
+.cat:hover{
+    opacity: 1;
+}
+
+.wrapper>h1 {
+  flex: 0 1 100%;
+ text-align: center;
+color: white;
+}

@@ -3,11 +3,24 @@ var pg=require("pg");
 var http = require('http'),
     fs = require('fs');
 var mysql=require("mysql");
+var bodyParser=require("body-parser");
+var sessions=require("express-session");
 var app = express();
 var conString = "postgres://postgres:hacker9494@localhost:5432/postgres";
 var client = new pg.Client(conString);
 var path = require('path');
+
 client.connect();
+var session;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(sessions({
+  secret:'this is a secret pass',
+  resave:false,
+  saveUnitialized:true
+}));
+
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -71,7 +84,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  //home route
 app.get("/home", function(req, res){
    
-
+  
   res.render("/home/ubuntu/workspace/exp/views/home.ejs",{
     
     content:content
@@ -120,10 +133,52 @@ app.get("/vetements", function(req, res){
 });
 
 app.get("/", function(req, res){
-  res.send("helloo herokuudduu!");
+  res.render("/home/ubuntu/workspace/exp/views/main.ejs");
 });
- 
 
+app.get("/login", function(req, res){
+  res.render("/home/ubuntu/workspace/exp/views/login.ejs");
+});
+
+ //login post form
+app.post("/login", function(req, res){
+  
+  //res.end(JSON.stringify(req.body));
+   isUser(req.body.username,req.body.password,function(result){
+    if (result){
+       sessions.id=req.body.username; 
+       
+    }
+   res.redirect("/home");
+      
+  });
+
+  
+});
+
+app.get("/logout", function(req, res){
+  req.session.destroy(function(err){
+   
+    res.redirect("/");
+  })
+  
+});
+
+function isUser(username,password,retour){
+  
+
+   return client.query("select * from membre  ",function(err,results){
+        for(var i=0;i<results["rows"].length;i++){
+         
+          if(results["rows"][i]["username"]==username && results["rows"][i]["motdepass"]==password){
+              retour(true);
+            }
+          }
+         
+        });
+      
+  
+};
 
 app.listen((process.env.PORT || 5000), function(){
   console.log('listening on *:5000');

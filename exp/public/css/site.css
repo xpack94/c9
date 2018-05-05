@@ -74,3 +74,8 @@ span.prix{
 span.date_fin{
     flex: 1;
 }
+
+ul.user{
+    list-style: none !important;
+    margin-bottom: 0 !important;
+}

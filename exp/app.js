@@ -84,52 +84,83 @@ app.use(express.static(path.join(__dirname, 'public')));
  //home route
 app.get("/home", function(req, res){
    
-  
-  res.render("/home/ubuntu/workspace/exp/views/home.ejs",{
+  if (sessions.id){
+     res.render("/home/ubuntu/workspace/exp/views/home.ejs",{
     
-    content:content
+    content:content,
+    username:sessions.id
   });
+  }else{
+    res.redirect("/");
+  }
+ 
   
 });
 //alimentations route
 app.get("/alimentations", function(req, res){
-   
-  res.render("/home/ubuntu/workspace/exp/views/alimentations.ejs",{
+   if(sessions.id){
+     res.render("/home/ubuntu/workspace/exp/views/alimentations.ejs",{
     
-    content:alimentations
-  });
+    content:alimentations,
+    username:sessions.id
+  });    
+   }else{
+     res.redirect("/")
+   }
+   
+ 
  
 });
 
 //meubles route
 app.get("/meubles", function(req, res){
+      if(sessions.id){
+       res.render("/home/ubuntu/workspace/exp/views/meubles.ejs",{
+    
+    content:meubles,
+     username:sessions.id
+  });    
+   }else{
+     res.redirect("/")
+   }
    
 
-  res.render("/home/ubuntu/workspace/exp/views/meubles.ejs",{
-    
-    content:meubles
-  });
+ 
   
 });
 
 //véhicules route
 app.get("/vehicules", function(req, res){
-   
-  res.render("/home/ubuntu/workspace/exp/views/vehicules.ejs",{
+      if(sessions.id){
+      res.render("/home/ubuntu/workspace/exp/views/vehicules.ejs",{
     
-    content:véhicules
-  });
+    content:véhicules,
+    username:sessions.id
+  });   
+   }else{
+     res.redirect("/")
+   }
+   
+   
+  
   
 });
 //vetements route
 app.get("/vetements", function(req, res){
    
-
-  res.render("/home/ubuntu/workspace/exp/views/vetements.ejs",{
+      if(sessions.id){
+      res.render("/home/ubuntu/workspace/exp/views/vetements.ejs",{
     
-    content:vetements
+    content:vetements,
+     username:sessions.id
   });
   
+   }else{
+     res.redirect("/")
+   }
+   
+
+ 
 });
 
 app.get("/", function(req, res){
@@ -147,10 +178,10 @@ app.post("/login", function(req, res){
    isUser(req.body.username,req.body.password,function(result){
     if (result){
        sessions.id=req.body.username; 
-       
+         
     }
-   res.redirect("/home");
-      
+   
+      res.redirect("/home");  
   });
 
   
@@ -163,6 +194,111 @@ app.get("/logout", function(req, res){
   })
   
 });
+
+
+
+app.get("/favoris", function(req, res){
+    
+      if(sessions.id){
+        find_favoris(sessions.id,function(result){
+          if(result){
+            res.render("/home/ubuntu/workspace/exp/views/favoris.ejs",{
+              username:sessions.id,
+              content:result
+            });
+          }  
+              
+        });
+  
+   }else{
+     res.redirect("/");
+   }
+   });
+   
+
+app.get("/achats", function(req, res){
+    
+      if(sessions.id){
+        find_achats(sessions.id,function(result){
+          if(result){
+            res.render("/home/ubuntu/workspace/exp/views/achats.ejs",{
+              username:sessions.id,
+              content:result
+            });
+          }  
+              
+        });
+  
+   }else{
+     res.redirect("/");
+   }
+   });
+   
+
+app.get("/partages", function(req, res){
+    
+      if(sessions.id){
+        find_partages(sessions.id,function(result){
+          if(result){
+            res.render("/home/ubuntu/workspace/exp/views/partages.ejs",{
+              username:sessions.id,
+              content:result
+            });
+          }  
+              
+        });
+  
+   }else{
+     res.redirect("/");
+   }
+   });
+
+
+
+
+function find_partages(username,f){
+    achats=[];
+    
+  return client.query("select * from objet ,( select id_membre from membre where username='"+username+"') as c where c.id_membre=objet.id_annonceur",function(err,results){
+        for(var i=0;i<results["rows"].length;i++){
+         
+         achats.push(results["rows"][i]);
+            
+          }
+          f(achats);
+});
+  
+  
+}
+
+
+function find_achats(username,f){
+    achats=[];
+    
+  return client.query("select * from objet ,( select id_membre from membre where username='"+username+"') as c where c.id_membre=objet.id_achteur",function(err,results){
+        for(var i=0;i<results["rows"].length;i++){
+         
+         achats.push(results["rows"][i]);
+            
+          }
+          f(achats);
+});
+  
+  
+}
+
+function find_favoris(username,f){
+  favoris=[];
+  return client.query("select * from categories ,( select id_cate from favoris ,membre where favoris.id_membre=membre.id_membre and membre.username='"+username+"') as c where c.id_cate=categories.id_catégorie",function(err,results){
+        for(var i=0;i<results["rows"].length;i++){
+         
+          favoris.push(results["rows"][i]);
+            
+          }
+          f(favoris);
+});
+};
+
 
 function isUser(username,password,retour){
   

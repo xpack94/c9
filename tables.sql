@@ -107,9 +107,9 @@ CREATE TABLE Véhicule
 
 CREATE TABLE favoris 
 		(id_membre INT NOT NULL ,
-		 id_objet INT NOT NULL ,
+		 id_cate INT NOT NULL ,
 		 CONSTRAINT favorisFk1 FOREIGN KEY(id_membre) REFERENCES membre(id_membre) on delete cascade   on update cascade,
-		 CONSTRAINT favorisFk2 FOREIGN KEY(id_objet) REFERENCES objet(id_objet) on delete cascade   on update cascade
+		 CONSTRAINT favorisFk2 FOREIGN KEY(id_cate) REFERENCES categories(id_catégorie) on delete cascade   on update cascade
 		 );
 
 CREATE TABLE notifications

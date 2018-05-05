@@ -14,7 +14,7 @@
   <body>
   <div class="wrapper">
       
-      <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
   <a class="navbar-brand" href="#">centre de partage</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -41,13 +41,13 @@
       </li>
     </ul>
     
-     <ul class="user">
+    <ul class="user">
      <li class="nav-item dropdown ">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%=username%>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-             <a class="dropdown-item" href="/achats">vos achats</a>
+           <a class="dropdown-item" href="/achats">vos achats</a>
           <a class="dropdown-item" href="/partages">vos partages</a>
           <a class="dropdown-item" href="/favoris">favoris</a>
            <a class="dropdown-item" href="/logout">logout</a>
@@ -55,52 +55,26 @@
       </li>
     </ul>
     
+    
+    
   </div>
 </nav>
-    <div class="header"></div>
+<div class="header"></div>
         <div class="section">
           <div class="row">
-              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>vétements</h1>
-              <ul class="products_list">
+              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>vos favoris</h1>
+                <ul class="products_list">
+                    <% for(var i=0; i < content.length; i++) { %>
+                    <li>
+                    <span class="nom"><%= content[i]["nom_cat"] %></span>
+                    <span class="date_fin"><a class="btn" data-toggle="collapse" data-target=<%="#viewdetail"+i %>>View details &raquo;</a></span>
+                    </li>
+                     <div id=<%="viewdetail"+i %> class="collapse">
+                        <p><%= content[i]["description_cat"]%></p>                   
+                     </div>
+                     <% } %>
                   
-                 <% for(var i=0; i < content.length; i++) { %>
-                     <li>
-                       <span class="nom"> <%= content[i]["nom_objet"] %></span>
-                       <span class="prix"><%=content[i]["prix"]+"$"%></span>
-                       <span class="date_fin"><a class="btn" data-toggle="collapse" data-target=<%="#viewdetail"+i %>>View details &raquo;</a></span>
-                     </li>
-                       <div id=<%="viewdetail"+i %> class="collapse">
-                        <% if(content[i]["date_fin"]) { %>
-                       <p><span>date fin de l'annonce :<%=content[i]["date_fin"] %></span></p>
-                       <% }%>
-                       <p><span>annonceur :<%=content[i]["nom_membre"] %> <%= content[i]["prenom"]%></span></p>
-                       <p><span>email de l'annonceur :<a href=<%="mailto:"+content[i]["email"] %> ><%=content[i]["email"] %> </a> </span></p>
-                       <p><span>cité de l'annonceur :<%=content[i]["cité"] %></span></p>
-                       <% if(content[i]["telno"]) { %>
-                       <p><span>telephone :<%=content[i]["telno"] %></span></p>
-                       <% } %>
-
-                       <p><span>grandeur :<%=content[i]["grandeur"] %></span></p>
-                        <% if(content[i]["matériel"]) { %>
-   
-                      <p><span>matériel :<%=content[i]["matériel"] %></span></p>
-                      <%}%>
-                       <% if(content[i]["type"]) { %>
-                      <p><span>type :<%=content[i]["type"] %></span></p>
-                      <%}%>
-                      
-                       <% if(content[i]["style"]) { %>
-                      <p><span>style :<%=content[i]["style"] %></span></p>
-                      <%}%>
-                       <% if(content[i]["description_vetement"]) { %>
-                      <p><span>déscription :<%=content[i]["description_vetement"] %></span></p>
-                      <%}%>
-                      </div>
-                  <% } %>
-                  
-                      
-                  
-                     </ul>
+                </ul>
               </div>
           </div>
           
@@ -108,10 +82,10 @@
       
   </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
-</html>
+  </html>

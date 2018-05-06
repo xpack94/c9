@@ -1,23 +1,60 @@
-afficher les noms de tout les membre ayant annoncer un objet 
+-afficher les noms de tout les membre ayant annoncer un objet 
+
 select nom_membre  from membre ,objet where membre.id_membre = objet.id_annonceur group by nom_membre;
 
 
-afficher les noms des membres qui ont annoncé des objets ainsi que le nombre d'annonce qui ont fait 
+-afficher les noms des membres qui ont annoncé des objets ainsi que le nombre d'annonce qui ont fait 
+
 select nom_membre , count(nom_membre) from membre ,objet where membre.id_membre = objet.id_annonceur group by nom_membre;   
 
-afficher les noms des membres qui ont annoncer des objets ainsi que le nombre d'annonce faites par chaqu'un dans l'ordre decroissant
+-afficher les noms des membres qui ont annoncer des objets ainsi que le nombre d'annonce faites par chaqu'un dans l'ordre decroissant
+
 select nom_membre , count(nom_membre) as number from membre ,objet where membre.id_membre = objet.id_annonceur group by nom_membre order by number desc;
 
-afficher le nombre d'objet annoncé dans chauque catégorie
+-afficher le nombre d'objet annoncé dans chauque catégorie
+
 select nom_cat,count(nom_cat) from categories left  join objet on objet.id_categorie=categories.id_catégorie  group by(nom_cat);
 
-afficher la moyenne des prix des objet dans chaque categorie 
+-afficher la moyenne des prix des objet dans chaque categorie 
+
 select avg(prix) ,id_categorie from objet group by objet.id_categorie;
 
-afficher les noms des membres et les categories qu'ils aiment par ordre decroissant 
+-afficher les noms des membres et les categories qu'ils aiment par ordre decroissant 
+
 select nom_membre,count(nom_membre) as number from favoris ,membre where favoris.id_membre = membre.id_membre group by(nom_membre) order by number desc; 
 
 
-afficher les categories ayant été choisis comme favoris par plus que 4 membres 
+-afficher les categories ayant été choisis comme favoris par plus que 4 membres 
+
 select id_cate,count(id_cate) as c from favoris  group by(id_cate) having count(id_cate)>4;
+
+
+-afficher les details de toutes les catégories qui sont marqué comme favoris pour le membre Dickerson
+
+select * from categories ,( select id_cate from favoris ,membre where favoris.id_membre=membre.id_membre and membre.username='Dickerson') as c where c.id_cate=categories.id_catégorie ; 
+
+
+-afficher le nombres de d'annonceur ayant fait des annonces dans la categorie vetement
+
+select * from (select * from categories where categories.nom_cat='vetement') as f  ,(select count(id_annonceur),id_categorie from objet group by(id_categorie)) as j where f.id_catégorie=j.id_categorie;
+
+-afficher les id des categories ayant le plus d'annonce 
+
+select count(id_categorie),id_categorie from objet group by (id_categorie) having count(id_categorie) >= all(select count(*) from objet group by(id_categorie));  
+
+
+-afficher les id et nom et prenom des annonceur ayant annoncer dans la categorie des vetement
+
+select membre.nom_membre,membre.prenom from membre ,(select objet.id_annonceur from objet inner join categories on categories.id_catégorie=objet.id_categorie where categories.nom_cat='vetement'group by(objet.id_annonceur)) as j where j.id_annonceur=membre.id_membre ; 
+
+
+-afficher tout les annonceur qui ont annoncé des objet dans la categorie vetement et qui ont cette categorie comme leur favoris
+
+select nom_membre,prenom from favoris inner join (select membre.id_membre, membre.nom_membre,membre.prenom from membre ,(select objet.id_annonceur from objet inner join categories on categories.id_catégorie=objet.id_categorie where categories.nom_cat='vetement'group by(objet.id_annonceur)) as j where j.id_annonceur=membre.id_membre) as c  on c.id_membre = favoris.id_membre where favoris.id_cate =(select favoris.id_cate from favoris,categories where favoris.id_cate=categories.id_catégorie and  categories.nom_cat='vetement' group by(id_cate)); 
+
+
+-afficher l'id de la categorie qui est la plus marqué comme favoris
+ 
+ select count(id_membre) as nombre,id_cate from favoris group by(id_cate) having count(id_membre)>=all(select count(id_membre) from favoris group by(id_cate));  
+
 

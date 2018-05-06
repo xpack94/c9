@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/site.css">
 
-    <title>Hello, world!</title>
+    <title>meubles</title>
   </head>
   <body>
   <div class="wrapper">
@@ -66,7 +66,7 @@
                   
                  <% for(var i=0; i < content.length; i++) { %>
                      <li>
-                       <span class="nom"> <%= content[i]["nom"] %></span>
+                       <span class="nom"> <%= content[i]["nom_objet"] %></span>
                        <span class="prix"><%=content[i]["prix"]+"$"%></span>
                        <span class="date_fin"><a class="btn" data-toggle="collapse" data-target=<%="#viewdetail"+i %>>View details &raquo;</a></span>
                      </li>
@@ -80,6 +80,19 @@
                        <% if(content[i]["telno"]) { %>
                        <p><span>telephone :<%=content[i]["telno"] %></span></p>
                        <% } %>
+                       
+                         <% if(content[i]["état"]) { %>
+                       <p><span>etat :<%=content[i]["état"] %></span></p>
+                       <% } %>
+                       
+                        <% if(content[i]["genre"]) { %>
+                       <p><span>genre :<%=content[i]["genre"] %></span></p>
+                       <% } %>
+                       
+                        <% if(content[i]["matériel"]) { %>
+                       <p><span>matériel :<%=content[i]["matériel"] %></span></p>
+                       <% } %>
+                       
                       </div>
                   <% } %>
                      </ul>

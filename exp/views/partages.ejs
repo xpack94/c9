@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/site.css">
 
-    <title>Hello, world!</title>
+    <title>vos partages</title>
   </head>
   <body>
   <div class="wrapper">
@@ -47,7 +47,7 @@
           <%=username%>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/partages">vos partages</a>
+          <a class="dropdown-item" href="/achats">vos achats</a>
           <a class="dropdown-item" href="/favoris">favoris</a>
            <a class="dropdown-item" href="/logout">logout</a>
         </div>
@@ -58,10 +58,10 @@
     <div class="header"></div>
         <div class="section">
           <div class="row">
-              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>vos achats</h1>
+              <div class="col-lg-9 col-md-9 col-sm-12 col-xs 12  products_section"> <h1>vos partages</h1>
               
                <% if(content.length==0) { %>
-               <p style="text-align:center;">vous n'avez fait aucun achat</p>
+               <p style="text-align:center;">vous n'avez fait aucun partage</p>
                <% }else{%>
                
               <ul class="products_list">

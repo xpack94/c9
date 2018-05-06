@@ -174,14 +174,18 @@ app.get("/login", function(req, res){
  //login post form
 app.post("/login", function(req, res){
   
-  //res.end(JSON.stringify(req.body));
+ 
    isUser(req.body.username,req.body.password,function(result){
+      
     if (result){
        sessions.id=req.body.username; 
+        res.redirect("/home"); 
          
+    }else{
+        res.redirect("/login");
     }
    
-      res.redirect("/home");  
+      
   });
 
   
@@ -304,11 +308,16 @@ function isUser(username,password,retour){
   
 
    return client.query("select * from membre  ",function(err,results){
+        correct=false;
         for(var i=0;i<results["rows"].length;i++){
          
           if(results["rows"][i]["username"]==username && results["rows"][i]["motdepass"]==password){
               retour(true);
+              correct=true;
             }
+          }
+          if (!correct){
+              retour(false);
           }
          
         });

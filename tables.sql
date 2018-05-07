@@ -113,10 +113,13 @@ CREATE TABLE favoris
 		 );
 
 CREATE TABLE notifications
-		 (id_notif INT NOT NULL ,
+		 (id_notif  INT NOT NULL primary key ,
 		  date DATE NOT NULL,
 		  id_membre INT NOT NULL,
 		  id_objet INT NOT NULL,
 		  CONSTRAINT notifFk1 FOREIGN KEY(id_membre) REFERENCES membre(id_membre) on delete cascade   on update cascade,
 		  CONSTRAINT notifFk2 FOREIGN KEY(id_objet) REFERENCES objet(id_objet) on delete cascade   on update cascade 
 		  );
+
+CREATE SEQUENCE id_notif_seq;
+ALTER TABLE notifications ALTER id_notif SET DEFAULT NEXTVAL('id_notif_seq');

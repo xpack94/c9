@@ -6,7 +6,7 @@ var mysql=require("mysql");
 var bodyParser=require("body-parser");
 var sessions=require("express-session");
 var app = express();
-var conString = "postgres://postgres:hacker9494@localhost:5432/postgres";
+var conString = "postgres://postgres:ift2935@localhost:5432/postgres";
 var client = new pg.Client(conString);
 var path = require('path');
 
